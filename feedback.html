@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Feedback</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f7ff;
+            color: #29243d;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #7046d8;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #625d75;
+            margin-left: 18px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #7046d8;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .heading p {
+            color: #77738a;
+            line-height: 1.6;
+        }
+
+        .feedback-card {
+            background: white;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px #30205b0d;
+        }
+
+        .field {
+            margin-bottom: 25px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 12px;
+        }
+
+        .stars button {
+            background: none;
+            border: none;
+            font-size: 34px;
+            cursor: pointer;
+            color: #d8d4e3;
+        }
+
+        .stars button.active {
+            color: #ffb52e;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #e3dfed;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+            color: #29243d;
+        }
+
+        select:focus,
+        textarea:focus {
+            border-color: #8b65ed;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #7046d8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #5c35c2;
+        }
+
+        .message {
+            display: none;
+            background: #eaf8ef;
+            color: #247442;
+            padding: 14px;
+            margin-top: 18px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .note {
+            text-align: center;
+            color: #8a849c;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #77738a;
+            font-size: 13px;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            nav a {
+                margin-left: 9px;
+                font-size: 12px;
+            }
+
+            .feedback-card {
+                padding: 22px;
+            }
+
+            .heading h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">💜 MindMate</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="learning.html">Learn</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="progress.html">Progress</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <div class="heading">
+            <h1>We Value Your Feedback 💜</h1>
+            <p>
+                Your feedback helps us make learning easier,
+                smarter and more enjoyable.
+            </p>
+        </div>
+
+        <div class="feedback-card">
+
+            <form id="feedbackForm">
+
+                <div class="field">
+                    <label>1. How would you rate your experience?</label>
+
+                    <div class="stars" id="starRating">
+                        <button type="button" data-value="1">★</button>
+                        <button type="button" data-value="2">★</button>
+                        <button type="button" data-value="3">★</button>
+                        <button type="button" data-value="4">★</button>
+                        <button type="button" data-value="5">★</button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="experience">
+                        2. How was your overall learning experience?
+                    </label>
+
+                    <select id="experience" required>
+                        <option value="">Select your experience</option>
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Average</option>
+                        <option>Needs Improvement</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="language">
+                        3. Which language did you prefer?
+                    </label>
+
+                    <select id="language" required>
+                        <option value="">Choose a language</option>
+                        <option>English</option>
+                        <option>Tamil</option>
+                        <option>Tanglish</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="helpful">
+                        4. Did MindMate help you understand concepts?
+                    </label>
+
+                    <select id="helpful" required>
+                        <option value="">Select an answer</option>
+                        <option>Yes, definitely</option>
+                        <option>Somewhat</option>
+                        <option>Not much</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="comments">
+                        5. Share your suggestions or comments
+                    </label>
+
+                    <textarea id="comments" placeholder="Tell us what you liked and what we can improve..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Submit Feedback →
+                </button>
+
+                <div class="message" id="successMessage">
+                    💜 Thank you! Your feedback has been recorded in this demo.
+                </div>
+
+            </form>
+
+        </div>
+
+        <p class="note">
+            Your feedback is important to improve the MindMate experience.
+        </p>
+
+    </main>
+
+    <footer>
+        © 2026 MindMate | Learn Smarter, Grow Better 💜
+    </footer>
+
+    <script>
+        let selectedRating = 0;
+
+        const stars = document.querySelectorAll("#starRating button");
+
+        stars.forEach(star => {
+            star.addEventListener("click", function () {
+                selectedRating = Number(this.dataset.value);
+
+                stars.forEach(item => {
+                    item.classList.toggle(
+                        "active",
+                        Number(item.dataset.value) <= selectedRating
+                    );
+                });
+            });
+        });
+
+        document.getElementById("feedbackForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            if (selectedRating === 0) {
+                alert("Please select a star rating!");
+                return;
+            }
+
+            document.getElementById("successMessage").style.display = "block";
+
+            this.reset();
+
+            selectedRating = 0;
+            stars.forEach(star => star.classList.remove("active"));
+        });
+    </script>
+
+</body>
+
+</html>

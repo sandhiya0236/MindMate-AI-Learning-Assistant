@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - My Progress</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f7ff;
+            color: #25213b;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 12px #0000000a;
+        }
+
+        .logo {
+            color: #7046d8;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #55516a;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #7046d8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #77738a;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 23px;
+            border-radius: 15px;
+            box-shadow: 0 4px 18px #30205b0a;
+        }
+
+        .stat-icon {
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 28px;
+            margin-bottom: 7px;
+            color: #7046d8;
+        }
+
+        .card p {
+            color: #77738a;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .progress-section {
+            margin-bottom: 25px;
+        }
+
+        .progress-item {
+            margin-bottom: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eeeaf8;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b65ed, #6841cb);
+            border-radius: 20px;
+        }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .activity {
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            height: 150px;
+            margin-top: 20px;
+            border-bottom: 1px solid #eeeaf8;
+        }
+
+        .bar-column {
+            text-align: center;
+            color: #77738a;
+            font-size: 12px;
+        }
+
+        .bar {
+            width: 25px;
+            background: #9675ed;
+            border-radius: 6px 6px 0 0;
+            margin: 0 auto 8px;
+        }
+
+        .goal {
+            background: #f3efff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .achievement {
+            background: #f3efff;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .achievement span {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .achievement p {
+            font-size: 12px;
+            color: #625b78;
+        }
+
+        .note {
+            margin-top: 22px;
+            color: #8a849c;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #77738a;
+            font-size: 13px;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 12px;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">💜 MindMate</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="learning.html">Learn</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="progress.html">Progress</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h1>My Learning Progress 📈</h1>
+            <p>Track your learning journey and celebrate your achievements!</p>
+        </section>
+
+        <section class="stats">
+
+            <div class="card">
+                <div class="stat-icon">📚</div>
+                <h2>12</h2>
+                <p>Topics Completed</p>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">📝</div>
+                <h2>8</h2>
+                <p>Quizzes Attempted</p>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">⭐</div>
+                <h2>85%</h2>
+                <p>Average Quiz Score</p>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">🔥</div>
+                <h2>5 Days</h2>
+                <p>Learning Streak</p>
+            </div>
+
+        </section>
+
+        <section class="card progress-section">
+            <h2 class="section-title">Overall Learning Progress</h2>
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Computer Science</span>
+                    <strong>80%</strong>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:80%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Mathematics</span>
+                    <strong>65%</strong>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:65%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Science</span>
+                    <strong>90%</strong>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:90%"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bottom-grid">
+
+            <div class="card">
+                <h2 class="section-title">Weekly Activity 📅</h2>
+                <p style="color:#77738a;font-size:13px;">
+                    Learning activity (sample hours)
+                </p>
+
+                <div class="activity">
+                    <div class="bar-column">
+                        <div class="bar" style="height:45px"></div>
+                        Mon
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:80px"></div>
+                        Tue
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:60px"></div>
+                        Wed
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:110px"></div>
+                        Thu
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:75px"></div>
+                        Fri
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:95px"></div>
+                        Sat
+                    </div>
+                    <div class="bar-column">
+                        <div class="bar" style="height:35px"></div>
+                        Sun
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">My Learning Goals 🎯</h2>
+
+                <div class="goal">
+                    ✅ Complete 5 topics this week
+                </div>
+
+                <div class="goal">
+                    ✅ Attempt 3 quizzes
+                </div>
+
+                <div class="goal">
+                    ⏳ Learn for 1 hour every day
+                </div>
+
+                <div class="goal">
+                    ⏳ Improve quiz score to 90%
+                </div>
+            </div>
+
+        </section>
+
+        <section class="card" style="margin-top:22px;">
+            <h2 class="section-title">My Achievements 🏆</h2>
+
+            <div class="badge-list">
+
+                <div class="achievement">
+                    <span>🌟</span>
+                    <strong>First Step</strong>
+                    <p>Started learning</p>
+                </div>
+
+                <div class="achievement">
+                    <span>🔥</span>
+                    <strong>Consistent</strong>
+                    <p>5-day streak</p>
+                </div>
+
+                <div class="achievement">
+                    <span>🎯</span>
+                    <strong>Quiz Master</strong>
+                    <p>Completed quizzes</p>
+                </div>
+
+                <div class="achievement">
+                    <span>🚀</span>
+                    <strong>Fast Learner</strong>
+                    <p>Completed topics</p>
+                </div>
+
+            </div>
+        </section>
+
+        <p class="note">
+            Demo progress data – not connected to actual learning activity yet.
+        </p>
+
+    </main>
+
+    <footer>
+        © 2026 MindMate | Learn Smarter, Grow Better 💜
+    </footer>
+
+</body>
+
+</html>

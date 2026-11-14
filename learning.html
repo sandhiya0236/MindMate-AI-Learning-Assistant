@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Learn a Concept</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7ff;
+            color: #25213a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 22px 8%;
+            background: white;
+            border-bottom: 1px solid #eeeafa;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #7254d6;
+        }
+
+        header a {
+            color: #7254d6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 55px auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .intro h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .intro p {
+            color: #77718c;
+            line-height: 1.6;
+        }
+
+        .learning-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(60, 40, 100, 0.07);
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 18px 0 9px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd8ef;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #7254d6;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .explain-btn {
+            background: #7254d6;
+            color: white;
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        .explain-btn:hover {
+            background: #5c40b9;
+        }
+
+        .explain-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .clear-btn {
+            background: #eeeafa;
+            color: #6548c4;
+            margin-top: 18px;
+        }
+
+        .result {
+            display: none;
+            background: white;
+            margin-top: 25px;
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid #e8e2fa;
+            line-height: 1.8;
+        }
+
+        .result h2 {
+            color: #7254d6;
+            margin-bottom: 15px;
+        }
+
+        .result h3 {
+            margin-top: 18px;
+            margin-bottom: 5px;
+        }
+
+        .result p {
+            color: #625d70;
+            white-space: pre-line;
+        }
+
+        .status {
+            margin-top: 15px;
+            color: #7254d6;
+        }
+
+        @media(max-width: 600px) {
+            .container {
+                margin: 25px auto;
+            }
+
+            .intro h1 {
+                font-size: 27px;
+            }
+
+            .learning-card {
+                padding: 20px;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">MindMate ✨</div>
+        <a href="/">Home</a>
+        <a href="/quiz.html">Quiz</a>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/progress.html">Progress</a>
+        <a href="/feedback.html">Feedback</a>
+    </header>
+
+    <main class="container">
+
+        <div class="intro">
+            <h1>What would you like to learn today?</h1>
+            <p>Enter any academic topic and learn it in a simple way.</p>
+        </div>
+
+        <section class="learning-card">
+
+            <label for="topic">Enter your topic</label>
+            <input type="text" id="topic" placeholder="Example: Artificial Intelligence">
+
+            <div class="options">
+
+                <div>
+                    <label for="language">Choose Language</label>
+                    <select id="language">
+                        <option value="English">English</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Tanglish">Tanglish</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="level">Learning Level</label>
+                    <select id="level">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <button class="explain-btn" id="explainBtn" onclick="explainConcept()">
+                Explain Concept ✨
+            </button>
+
+            <button class="clear-btn" onclick="clearForm()">
+                Clear
+            </button>
+
+            <p class="status" id="status"></p>
+
+
+            <section class="result" id="result">
+
+                <h2 id="resultTitle">Your Learning Explanation</h2>
+
+                <h3>Simple Definition</h3>
+                <p id="definition"></p>
+
+                <h3>Step-by-Step Explanation</h3>
+                <div id="steps"></div>
+
+                <h3>Real-World Example</h3>
+                <p id="example"></p>
+
+                <p id="demoNote" style="margin-top:20px;font-size:13px;">
+                </p>
+
+            </section>
+
+
+    </main>
+
+    <script>
+        async function explainConcept() {
+
+            const topic = document.getElementById("topic").value.trim();
+            const language = document.getElementById("language").value;
+            const level = document.getElementById("level").value;
+            const result = document.getElementById("result");
+            const button = document.querySelector(".explain-btn");
+
+            if (!topic) {
+                alert("Please enter a topic first!");
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Generating explanation...";
+
+            try {
+                const response = await fetch("/api/explain", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        topic: topic,
+                        language: language,
+                        level: level
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Something went wrong");
+                }
+
+                document.getElementById("resultTitle").textContent = data.title;
+                document.getElementById("definition").textContent = data.definition;
+                const stepsContainer = document.getElementById("steps");
+                stepsContainer.innerHTML = "";
+
+                const stepsText = String(data.steps || "")
+                    .replace(/\\\./g, ".")
+                    .replace(/\\n/g, "\n")
+                    .replace(/Step\s*\n\s*(\d+)\s*:/gi, "Step $1:");
+                const stepItems = stepsText
+                    .split(/(?=(?:Step\s*)?\d+\s*[:.)]\s*)/i)
+                    .map(step => step.trim())
+                    .filter(step => step.length > 0);
+
+                stepItems.forEach(step => {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = step;
+                    stepsContainer.appendChild(paragraph);
+                });
+                document.getElementById("example").textContent = data.example;
+
+                result.style.display = "block";
+                result.scrollIntoView({ behavior: "smooth" });
+
+            } catch (error) {
+                alert(error.message);
+            } finally {
+                button.disabled = false;
+                button.textContent = "Explain Concept ✨";
+            }
+        }
+
+        function clearForm() {
+            document.getElementById("topic").value = "";
+            document.getElementById("language").value = "English";
+            document.getElementById("level").value = "Beginner";
+            document.getElementById("result").style.display = "none";
+        }
+
+    </script>
+
+</body>
+
+</html>

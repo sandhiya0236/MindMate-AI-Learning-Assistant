@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindMate – AI Learning Assistant for College Students</title>
+  <meta name="description"
+    content="MindMate is an AI learning assistant for college students across all departments. Learn in English, Tamil, and Tanglish with concept explanations, smart quizzes, and progress tracking.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header class="navbar-header" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <span class="logo-text">Mind<span class="logo-highlight">Mate</span></span>
+        <span class="logo-badge">AI</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
+        <a href="#features" class="nav-link" data-i18n="navFeatures">Features</a>
+        <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="feedback.html" class="nav-link">Feedback</a>
+      </nav>
+
+      <!-- Language Selector & Header Actions -->
+      <div class="nav-actions">
+        <!-- Quick Language Switcher in Header -->
+        <div class="language-dropdown-wrapper" title="Change Language">
+          <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <select id="headerLangSelect" class="lang-select" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="tanglish">Tanglish</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-sm" id="navStartBtn" data-i18n="navStart">Get Started</button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="hero-bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+      </div>
+
+      <div class="container hero-container">
+        <div class="hero-content">
+          <!-- Student Badge -->
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span data-i18n="heroBadge">🎓 Built for College Students Across All Departments</span>
+          </div>
+
+          <!-- Hero Heading -->
+          <h1 class="hero-title" id="heroTitle" data-i18n="heroTitle">
+            Learn at your pace.<br>
+            <span class="text-gradient">Understand your way.</span>
+          </h1>
+
+          <!-- Short Description -->
+          <p class="hero-description" id="heroDescription" data-i18n="heroDescription">
+            MindMate is your 24/7 AI-powered study buddy tailored for college students. Break down complex engineering,
+            arts, science, and commerce concepts into simple language, interactive quizzes, and bite-sized insights.
+          </p>
+
+          <!-- Language Selector Pills in Hero -->
+          <div class="hero-lang-picker">
+            <span class="lang-picker-label" data-i18n="langLabel">Choose your preferred study language:</span>
+            <div class="lang-pills" role="radiogroup" aria-label="Study Language Selection">
+              <button class="lang-pill active" data-lang="en" role="radio" aria-checked="true">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-name">English</span>
+              </button>
+              <button class="lang-pill" data-lang="ta" role="radio" aria-checked="false">
+                <span class="lang-flag">🇮🇳</span>
+                <span class="lang-name">தமிழ் (Tamil)</span>
+              </button>
+              <button class="lang-pill" data-lang="tanglish" role="radio" aria-checked="false">
+                <span class="lang-flag">✨</span>
+                <span class="lang-name">Tanglish</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero CTA Buttons -->
+          <div class="hero-buttons">
+            <button class="btn btn-primary btn-lg" id="btnStartLearning" data-i18n="btnStart"
+              onclick="window.location.href='learning.html'">
+              <span>Start Learning</span>
+              <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <a href="#features" class="btn btn-outline btn-lg" id="btnExploreFeatures" data-i18n="btnExplore">
+              <span>Explore Features</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 16 16 12 12 8"></polyline>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Student Trust Stats -->
+          <div class="hero-trust">
+            <div class="trust-item">
+              <strong>100%</strong>
+              <span data-i18n="trustFree">Free for Students</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <strong>3</strong>
+              <span data-i18n="trustLang">Languages Supported</span>
+            </div>
+            <div class="trust-divider"></div>
+            <div class="trust-item">
+              <strong>All</strong>
+              <span data-i18n="trustDepts">Major Departments</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive AI Preview Card / Visual -->
+        <div class="hero-visual">
+          <div class="interactive-preview-card">
+            <div class="preview-header">
+              <div class="preview-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="preview-header-title">
+                <span class="status-indicator"></span>
+                <span id="previewHeaderStatus">MindMate AI • Ready to explain</span>
+              </div>
+              <span class="preview-chip" id="previewLangChip">Tanglish Demo</span>
+            </div>
+
+            <div class="preview-chat-body">
+              <!-- Student Query Bubble -->
+              <div class="chat-bubble user-bubble">
+                <div class="bubble-sender" data-i18n="previewStudentTag">College Student (Engineering)</div>
+                <div class="bubble-content" id="previewUserQuestion">
+                  "Bro, Recursion pathi simple-ah Tanglish-la explain panna mudiyuma? Exam-ku purila!"
+                </div>
+              </div>
+
+              <!-- MindMate Response Bubble -->
+              <div class="chat-bubble ai-bubble">
+                <div class="bubble-sender-ai">
+                  <div class="ai-avatar">MM</div>
+                  <span>MindMate AI</span>
+                </div>
+                <div class="bubble-content" id="previewAiAnswer">
+                  <p><strong>Kandippa! Simple analogy vachu purinjikalam:</strong></p>
+                  <p>Russian Nesting Dolls paathurukkiya? Oru doll kula innoru chinna doll irukum. Adha open panna innum
+                    chinna doll varum. Kadaisiya periya doll-ae illama kadaisi limit vara varaikkum repeat aagum!</p>
+                  <div class="concept-callout">
+                    💡 <strong>Base Case:</strong> Kadaisi chinna doll (stopping condition). Idhu illana infinite loop
+                    aagirum!
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Demo Interactive Pill Row -->
+              <div class="preview-prompt-suggestions">
+                <span class="prompt-hint" data-i18n="previewTryPrompt">Try sample topic:</span>
+                <button class="prompt-pill active" data-topic="recursion">Recursion</button>
+                <button class="prompt-pill" data-topic="photosynthesis">Photosynthesis</button>
+                <button class="prompt-pill" data-topic="balance-sheet">Balance Sheet</button>
+              </div>
+            </div>
+
+            <div class="preview-footer">
+              <div class="preview-input-mock">
+                <span>Ask any question in English, தமிழ் or Tanglish...</span>
+                <button class="preview-send-btn" aria-label="Send query">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-pill purple-badge">
+            <span data-i18n="featuresPill">Powerful Academic Features</span>
+          </div>
+          <h2 class="section-title" data-i18n="featuresTitle">Everything You Need to Ace College Exams</h2>
+          <p class="section-subtitle" data-i18n="featuresSubtitle">
+            Tailored specifically for undergraduate and postgraduate students seeking stress-free conceptual clarity.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <!-- Feature 1: AI Concept Explainer -->
+          <div class="feature-card" data-feature="explainer">
+            <div class="feature-icon-box icon-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <div class="feature-badge" data-i18n="card1Badge">Core Engine</div>
+            <h3 class="feature-title" data-i18n="card1Title">AI Concept Explainer</h3>
+            <p class="feature-desc" data-i18n="card1Desc">
+              Transform dense textbooks and lecture notes into intuitive real-life analogies. Ask follow-up questions
+              until the concept clicks completely.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card1Item1">Real-life relatable examples</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card1Item2">Customizable difficulty depth</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 2: Multilingual Learning -->
+          <div class="feature-card" data-feature="multilingual">
+            <div class="feature-icon-box icon-violet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+            </div>
+            <div class="feature-badge" data-i18n="card2Badge">Language Freedom</div>
+            <h3 class="feature-title" data-i18n="card2Title">Multilingual Learning</h3>
+            <p class="feature-desc" data-i18n="card2Desc">
+              Language shouldn't be a barrier to scoring high. Learn seamlessly in formal English, authentic Tamil
+              (தமிழ்), or everyday spoken Tanglish.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card2Item1">Tamil & Tanglish native support</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card2Item2">Instant one-click translation</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 3: Smart Quizzes -->
+          <div class="feature-card" data-feature="quizzes">
+            <div class="feature-icon-box icon-fuchsia">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div class="feature-badge" data-i18n="card3Badge">Active Recall</div>
+            <h3 class="feature-title" data-i18n="card3Title">Smart Quizzes</h3>
+            <p class="feature-desc" data-i18n="card3Desc">
+              Generate adaptive practice quizzes from your syllabus topics. Receive instant grading with step-by-step
+              reasoning for every answer.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card3Item1">Multiple choice & short questions</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card3Item2">Immediate explanations for mistakes</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Feature 4: Progress Tracking -->
+          <div class="feature-card" data-feature="tracking">
+            <div class="feature-icon-box icon-indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <div class="feature-badge" data-i18n="card4Badge">Analytics</div>
+            <h3 class="feature-title" data-i18n="card4Title">Progress Tracking</h3>
+            <p class="feature-desc" data-i18n="card4Desc">
+              Track chapter completion, study streaks, and topic confidence metrics to know exactly where you stand
+              before semester examinations.
+            </p>
+            <ul class="feature-list">
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card4Item1">Daily study streak tracker</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="card4Item2">Subject-wise confidence score</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-card">
+          <div class="about-grid">
+            <div class="about-text">
+              <div class="badge-pill purple-badge">
+                <span data-i18n="aboutBadge">About MindMate</span>
+              </div>
+              <h2 class="about-title" data-i18n="aboutTitle">Designed to Make College Studies Stress-Free</h2>
+              <p class="about-desc" data-i18n="aboutDesc1">
+                College syllabi are heavy, semesters move fast, and standard textbooks often fail to explain core
+                fundamentals intuitively. MindMate was born to give every student an approachable, friendly mentor.
+              </p>
+              <p class="about-desc" data-i18n="aboutDesc2">
+                Whether you are an engineering student wrestling with circuit theory, a commerce student balancing
+                ledgers, or an arts student analyzing literature, MindMate speaks your language and adapts to your
+                thinking style.
+              </p>
+
+              <div class="dept-tags">
+                <span class="dept-tag">⚡ Engineering & Tech</span>
+                <span class="dept-tag">📊 Commerce & Accounts</span>
+                <span class="dept-tag">🔬 Science & Biotech</span>
+                <span class="dept-tag">📚 Arts & Humanities</span>
+                <span class="dept-tag">🩺 Medical & Allied Health</span>
+              </div>
+            </div>
+
+            <div class="about-visual">
+              <div class="quote-card">
+                <div class="quote-icon">“</div>
+                <p class="quote-text" data-i18n="quoteText">
+                  "Education becomes powerful when you don't have to translate your thoughts twice. MindMate lets you
+                  think in your mother tongue and learn at your own pace."
+                </p>
+                <div class="quote-author">
+                  <div class="author-avatar">MM</div>
+                  <div>
+                    <strong class="author-name">The MindMate Mission</strong>
+                    <span class="author-sub" data-i18n="authorSub">Empowering every collegiate learner</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <div class="cta-content">
+            <h2 class="cta-title" data-i18n="ctaTitle">Ready to Elevate Your College Journey?</h2>
+            <p class="cta-desc" data-i18n="ctaDesc">
+              Join thousands of students who understand concepts faster, retain longer, and prepare with confidence.
+            </p>
+            <div class="cta-buttons">
+              <button class="btn btn-primary btn-lg" id="ctaStartBtn" data-i18n="ctaBtn">
+                <span>Start Learning Now – It's Free</span>
+                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#home" class="logo">
+            <div class="logo-icon-wrapper">
+              <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <span class="logo-text">Mind<span class="logo-highlight">Mate</span></span>
+          </a>
+          <p class="footer-tagline" data-i18n="footerTagline">
+            Personalized AI Learning Assistant for College Students. Learn in English, தமிழ், or Tanglish.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading" data-i18n="footerNavTitle">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-i18n="navHome">Home</a></li>
+            <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+            <li><a href="#about" data-i18n="navAbout">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading" data-i18n="footerLangTitle">Languages</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-lang-link" data-lang="en">English Edition</a></li>
+            <li><a href="#" class="footer-lang-link" data-lang="ta">தமிழ் பதிப்பு (Tamil)</a></li>
+            <li><a href="#" class="footer-lang-link" data-lang="tanglish">Tanglish Mode</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading" data-i18n="footerFeaturesTitle">Core Features</h4>
+          <ul class="footer-links">
+            <li><a href="#features" data-i18n="card1Title">AI Concept Explainer</a></li>
+            <li><a href="#features" data-i18n="card2Title">Multilingual Learning</a></li>
+            <li><a href="#features" data-i18n="card3Title">Smart Quizzes</a></li>
+            <li><a href="#features" data-i18n="card4Title">Progress Tracking</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; <span id="currentYear">2026</span> MindMate – AI Learning Assistant. Crafted for college students.
+        </p>
+        <div class="footer-legal">
+          <span class="status-badge"><span class="status-dot"></span> All Systems Operational</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Welcome / Stage 1 Preview Modal -->
+  <div class="modal-overlay" id="welcomeModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+      <div class="modal-icon-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3 class="modal-title" id="modalTitle">Welcome to MindMate!</h3>
+      <p class="modal-text">
+        You are previewing <strong>Stage 1 (Home Page)</strong> of MindMate AI Learning Assistant.
+      </p>
+      <div class="modal-info-box">
+        <div class="info-row">
+          <span class="info-label">Active Language:</span>
+          <strong id="modalActiveLang">English</strong>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Ready For:</span>
+          <span>Next Development Stages (Chat, Quizzes, Auth)</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-block" id="modalConfirmBtn">Got it, let's explore!</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>

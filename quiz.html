@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Smart Quiz</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7ff;
+            color: #29243b;
+        }
+
+        header {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #7254d6;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        header a {
+            color: #7254d6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .intro h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #77718c;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(60, 40, 100, .07);
+        }
+
+        .top-info {
+            display: flex;
+            justify-content: space-between;
+            color: #7254d6;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .progress {
+            height: 8px;
+            background: #eeeafa;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: #7254d6;
+            transition: width .3s;
+        }
+
+        .question {
+            font-size: 21px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: block;
+            padding: 15px;
+            border: 1px solid #e2ddef;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            border-color: #7254d6;
+            background: #f8f6ff;
+        }
+
+        .option input {
+            margin-right: 10px;
+            accent-color: #7254d6;
+        }
+
+        button {
+            padding: 13px 23px;
+            border: none;
+            border-radius: 9px;
+            background: #7254d6;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        #nextBtn {
+            margin-top: 15px;
+            float: right;
+        }
+
+        .result {
+            display: none;
+            background: white;
+            padding: 30px;
+            margin-top: 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .result h2 {
+            color: #7254d6;
+            margin-bottom: 15px;
+        }
+
+        .result p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        #feedback {
+            margin-top: 18px;
+            color: #625d70;
+        }
+
+        @media(max-width:600px) {
+            .container {
+                margin: 20px auto;
+            }
+
+            .intro h1 {
+                font-size: 26px;
+            }
+
+            .quiz-card {
+                padding: 20px;
+            }
+        }
+
+        .topic-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .topic-box h2 {
+            color: #6c4ce4;
+            margin-bottom: 10px;
+        }
+
+        .topic-box p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .topic-box input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .topic-box button {
+            background: #6c4ce4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .review-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .review-section h2 {
+            color: #6c4ce4;
+            margin-bottom: 20px;
+        }
+
+        .review-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .review-item h3 {
+            color: #6c4ce4;
+            margin-bottom: 10px;
+        }
+
+        .review-item p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">MindMate ✨</div>
+        <a href="index.html">← Back to Home</a>
+        <a href="learning.html">Learning</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="progress.html">Progress</a>
+        <a href="feedback.html">Feedback</a>
+    </header>
+
+    <main class="container">
+
+        <div class="intro">
+            <h1>Smart Quiz 🧠</h1>
+            <p>Test your knowledge and improve your learning.</p>
+        </div>
+
+        <div class="topic-box">
+            <h2>Generate Your Quiz ✨</h2>
+            <p>Enter any topic to create an AI-powered quiz.</p>
+
+            <input type="text" id="quizTopic" placeholder="Example: Python, Machine Learning, DBMS...">
+
+            <button onclick="startQuiz()">Generate Quiz</button>
+
+            <p id="quizStatus"></p>
+        </div>
+
+        <section class="quiz-card" id="quizCard">
+
+            <div class="top-info">
+                <span id="questionCount">Question 1 of 5</span>
+                <span>MindMate Quiz</span>
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <h2 class="question" id="question"></h2>
+
+            <div id="options"></div>
+
+            <button id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+            <div style="clear:both"></div>
+
+        </section>
+
+        <section class="result" id="result">
+            <h2>Quiz Completed! 🎉</h2>
+            <h1 id="score"></h1>
+            <p id="message"></p>
+            <p id="feedback"></p>
+            <button onclick="restartQuiz()">Try Again</button>
+        </section>
+
+        <section class="review-section" id="reviewSection" style="display: none;">
+            <h2>Quiz Review 📘</h2>
+            <div id="reviewContainer"></div>
+        </section>
+
+    </main>
+
+    <script>
+        let questions = [];
+        let current = 0;
+        let score = 0;
+        let answers = [];
+
+        // Fixed fallback questions
+        const fallbackQuestions = [
+            {
+                question: "What does AI stand for?",
+                options: ["Automatic Internet", "Artificial Intelligence", "Advanced Information", "Applied Integration"],
+                answer: 1
+            },
+            {
+                question: "Which of these is an example of AI?",
+                options: ["A wooden chair", "A basic pencil", "A voice assistant", "A paper notebook"],
+                answer: 2
+            },
+            {
+                question: "What is the main purpose of Machine Learning?",
+                options: ["To learn patterns from data", "To print documents", "To store books", "To draw pictures only"],
+                answer: 0
+            },
+            {
+                question: "Which language is commonly used in AI development?",
+                options: ["HTML only", "Python", "CSS only", "XML only"],
+                answer: 1
+            },
+            {
+                question: "What is a chatbot?",
+                options: ["A computer keyboard", "A storage device", "A program that communicates with users", "A type of printer"],
+                answer: 2
+            }
+        ];
+
+        // Generate AI quiz
+        async function startQuiz() {
+            const topic = document.getElementById("quizTopic").value.trim();
+            const status = document.getElementById("quizStatus");
+            const button = document.querySelector(".topic-box button");
+
+            if (!topic) {
+                status.textContent = "Please enter a topic!";
+                return;
+            }
+
+            button.disabled = true;
+            button.textContent = "Generating Quiz...";
+            status.textContent = "AI is preparing your questions. Please wait...";
+
+            try {
+                const response = await fetch("/api/quiz", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ topic: topic })
+                });
+
+                if (!response.ok) {
+                    throw new Error("Quiz generation failed");
+                }
+
+                const data = await response.json();
+
+                if (!Array.isArray(data.questions) || data.questions.length !== 5) {
+                    throw new Error("Invalid quiz data");
+                }
+
+                questions = data.questions;
+                status.textContent = "AI-generated quiz ready! ✨";
+
+            } catch (error) {
+                questions = fallbackQuestions;
+                status.textContent =
+                    "AI is unavailable. Showing our fixed AI sample quiz instead.";
+            }
+
+            button.disabled = false;
+            button.textContent = "Generate Quiz";
+
+            current = 0;
+            score = 0;
+            answers = [];
+
+            document.getElementById("result").style.display = "none";
+            document.getElementById("quizCard").style.display = "block";
+
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[current];
+
+            document.getElementById("questionCount").textContent =
+                `Question ${current + 1} of ${questions.length}`;
+
+            document.getElementById("progressBar").style.width =
+                `${(current / questions.length) * 100}%`;
+
+            document.getElementById("question").textContent = q.question;
+
+            const optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = "";
+
+            q.options.forEach((option, index) => {
+                const label = document.createElement("label");
+                label.className = "option";
+
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "answer";
+                radio.value = index;
+
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(" " + option));
+
+                optionsContainer.appendChild(label);
+            });
+
+            document.getElementById("nextBtn").textContent =
+                current === questions.length - 1
+                    ? "Submit Quiz"
+                    : "Next Question →";
+        }
+
+        function nextQuestion() {
+            const selected =
+                document.querySelector('input[name="answer"]:checked');
+
+            if (!selected) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            answers[current] = Number(selected.value);
+
+            if (answers[current] === questions[current].answer) {
+                score++;
+            }
+
+            current++;
+
+            if (current < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById("quizCard").style.display = "none";
+            document.getElementById("result").style.display = "block";
+            document.getElementById("progressBar").style.width = "100%";
+
+            document.getElementById("score").textContent =
+                `${score} / ${questions.length}`;
+
+            document.getElementById("message").textContent =
+                score >= 4 ? "Excellent work! 🌟" :
+                    score >= 3 ? "Good job! Keep learning. 👍" :
+                        "Keep practising. You can improve! 💜";
+
+            document.getElementById("feedback").textContent =
+                `You answered ${score} questions correctly and ${questions.length - score} incorrectly.`;
+
+            // Save quiz result in browser
+            const quizHistory = JSON.parse(
+                localStorage.getItem("quizHistory") || "[]"
+            );
+
+            quizHistory.push({
+                topic: document.getElementById("quizTopic").value.trim(),
+                score: score,
+                total: questions.length,
+                date: new Date().toLocaleString()
+            });
+
+            localStorage.setItem(
+                "quizHistory",
+                JSON.stringify(quizHistory)
+            );
+            // Show Quiz Review
+            const reviewSection = document.getElementById("reviewSection");
+            const reviewContainer = document.getElementById("reviewContainer");
+
+            reviewContainer.innerHTML = "";
+
+            questions.forEach((q, index) => {
+                const isCorrect = answers[index] === q.answer;
+
+                const reviewItem = document.createElement("div");
+                reviewItem.className = "review-item";
+
+                reviewItem.innerHTML = `
+            <h3>Question ${index + 1}</h3>
+            <p>${q.question}</p>
+            <p>${isCorrect ? "✅ Correct" : "❌ Incorrect"}</p>
+            <p>Your Answer: ${q.options[answers[index]]}</p>
+            <p>Correct Answer: ${q.options[q.answer]}</p>
+        `;
+
+                reviewContainer.appendChild(reviewItem);
+            });
+
+            reviewSection.style.display = "block";
+        }
+
+        function restartQuiz() {
+            current = 0;
+            score = 0;
+            answers = [];
+
+            document.getElementById("quizCard").style.display = "block";
+            document.getElementById("result").style.display = "none";
+
+            showQuestion();
+        }
+    </script>
+</body>
+
+</html>

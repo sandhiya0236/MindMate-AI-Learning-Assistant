@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Student Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f7ff;
+            color: #29243b;
+        }
+
+        header {
+            background: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eeeafa;
+        }
+
+        .logo {
+            color: #7254d6;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #7254d6;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #77718c;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(60, 40, 100, .05);
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #7254d6;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #77718c;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .progress-card {
+            margin-bottom: 35px;
+        }
+
+        .progress-item {
+            margin-bottom: 22px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #eeeafa;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #8064df;
+            border-radius: 20px;
+        }
+
+        .activities {
+            margin-bottom: 35px;
+        }
+
+        .activity {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eeeafa;
+        }
+
+        .activity-icon {
+            font-size: 25px;
+            background: #f1edff;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .activity p {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .activity small {
+            color: #888;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            padding: 13px 20px;
+            background: #7254d6;
+            color: white;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .actions a:hover {
+            background: #5c40b9;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            padding: 25px;
+        }
+
+        @media(max-width:700px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">MindMate ✨</div>
+        <a href="index.html">← Back to Home</a>
+        <a href="learning.html">Learning</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="progress.html">Progress</a>
+        <a href="feedback.html">Feedback</a>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h1>Welcome Back, Student! 👋</h1>
+            <p>Keep learning, keep growing. Your learning journey continues here.</p>
+        </section>
+
+        <section class="stats">
+
+            <div class="card">
+                <div class="stat-icon">📚</div>
+                <h2 id="topicsCount">5</h2>
+                <p>Topics Learned</p>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">🧠</div>
+                <h2 id="quizCount">3</h2>
+                <p>Quizzes Completed</p>
+            </div>
+
+            <div class="card">
+                <div class="stat-icon">⭐</div>
+                <h2 id="averageScore">80%</h2>
+                <p>Average Quiz Score</p>
+            </div>
+
+        </section>
+
+        <h2 class="section-title">My Learning Progress 📈</h2>
+
+        <section class="card progress-card">
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Artificial Intelligence</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:80%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Computer Networks</span>
+                    <span>65%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:65%"></div>
+                </div>
+            </div>
+
+            <div class="progress-item">
+                <div class="progress-info">
+                    <span>Python Programming</span>
+                    <span>45%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:45%"></div>
+                </div>
+            </div>
+
+        </section>
+
+        <h2 class="section-title">Recent Learning Activities 📝</h2>
+
+        <section class="card activities">
+
+            <div class="activity">
+                <div class="activity-icon">📖</div>
+                <div>
+                    <p>Learned Artificial Intelligence</p>
+                    <small>Concept Explainer · Sample activity</small>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">🎯</div>
+                <div>
+                    <p>Completed Smart Quiz</p>
+                    <small>Quiz Practice · Sample activity</small>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="activity-icon">💻</div>
+                <div>
+                    <p>Practised Python Programming</p>
+                    <small>Learning Activity · Sample activity</small>
+                </div>
+            </div>
+
+        </section>
+
+        <h2 class="section-title">Continue Learning 🚀</h2>
+
+        <section class="actions">
+            <a href="learning.html">Learn a Concept</a>
+            <a href="quiz.html">Take a Quiz</a>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 MindMate. Learn Smarter, Grow Better.
+    </footer>
+
+
+    <script>
+        const quizHistory = JSON.parse(
+            localStorage.getItem("quizHistory") || "[]"
+        );
+
+        document.getElementById("quizCount").textContent =
+            quizHistory.length;
+
+        if (quizHistory.length > 0) {
+            const totalScore = quizHistory.reduce(
+                (sum, quiz) => sum + quiz.score,
+                0
+            );
+
+            const totalQuestions = quizHistory.reduce(
+                (sum, quiz) => sum + quiz.total,
+                0
+            );
+
+            const average = Math.round(
+                (totalScore / totalQuestions) * 100
+            );
+
+            document.getElementById("averageScore").textContent =
+                average + "%";
+        } else {
+            document.getElementById("averageScore").textContent = "0%";
+        }
+    </script>
+
+</body>
+
+</html>

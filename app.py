@@ -19,7 +19,7 @@ client = genai.Client(api_key=API_KEY) if API_KEY else None
 
 @app.route("/")
 def home():
-    return "MindMate Backend is Running!"
+    return send_from_directory(".", "index.html")
 
 
 @app.route("/learning")

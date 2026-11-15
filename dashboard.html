@@ -212,19 +212,19 @@
 
             <div class="card">
                 <div class="stat-icon">📚</div>
-                <h2 id="topicsCount">5</h2>
+                <h2 id="topicsCount">0</h2>
                 <p>Topics Learned</p>
             </div>
 
             <div class="card">
                 <div class="stat-icon">🧠</div>
-                <h2 id="quizCount">3</h2>
+                <h2 id="quizCount">0</h2>
                 <p>Quizzes Completed</p>
             </div>
 
             <div class="card">
                 <div class="stat-icon">⭐</div>
-                <h2 id="averageScore">80%</h2>
+                <h2 id="averageScore">0%</h2>
                 <p>Average Quiz Score</p>
             </div>
 
@@ -268,31 +268,11 @@
 
         <h2 class="section-title">Recent Learning Activities 📝</h2>
 
-        <section class="card activities">
+        <section class="card activities" id="activityContainer">
 
-            <div class="activity">
-                <div class="activity-icon">📖</div>
-                <div>
-                    <p>Learned Artificial Intelligence</p>
-                    <small>Concept Explainer · Sample activity</small>
-                </div>
-            </div>
-
-            <div class="activity">
-                <div class="activity-icon">🎯</div>
-                <div>
-                    <p>Completed Smart Quiz</p>
-                    <small>Quiz Practice · Sample activity</small>
-                </div>
-            </div>
-
-            <div class="activity">
-                <div class="activity-icon">💻</div>
-                <div>
-                    <p>Practised Python Programming</p>
-                    <small>Learning Activity · Sample activity</small>
-                </div>
-            </div>
+            <p style="color: #888; text-align: center; padding: 20px;">
+                No learning activities yet. Start learning today! ✨
+            </p>
 
         </section>
 
@@ -311,33 +291,82 @@
 
 
     <script>
+
         const quizHistory = JSON.parse(
             localStorage.getItem("quizHistory") || "[]"
         );
 
+        // Update learned topics count
+        const learnedTopics = JSON.parse(
+            localStorage.getItem("learnedTopics") || "[]"
+        );
+
+        document.getElementById("topicsCount").textContent =
+            learnedTopics.length;
+
+        // Update completed quiz count
         document.getElementById("quizCount").textContent =
             quizHistory.length;
 
+        // Calculate average score
         if (quizHistory.length > 0) {
             const totalScore = quizHistory.reduce(
-                (sum, quiz) => sum + quiz.score,
-                0
+                (sum, quiz) => sum + quiz.score, 0
             );
 
             const totalQuestions = quizHistory.reduce(
-                (sum, quiz) => sum + quiz.total,
-                0
+                (sum, quiz) => sum + quiz.total, 0
             );
 
-            const average = Math.round(
-                (totalScore / totalQuestions) * 100
-            );
+            const average = totalQuestions > 0
+                ? Math.round((totalScore / totalQuestions) * 100)
+                : 0;
 
             document.getElementById("averageScore").textContent =
                 average + "%";
         } else {
             document.getElementById("averageScore").textContent = "0%";
         }
+
+        // Display recent quiz activities
+        const activityContainer =
+            document.getElementById("activityContainer");
+
+        activityContainer.innerHTML = "";
+
+        if (quizHistory.length === 0) {
+            activityContainer.textContent =
+                "No learning activities yet. Start learning today! ✨";
+        } else {
+            const recentActivities = [...quizHistory].reverse().slice(0, 3);
+
+            recentActivities.forEach(quiz => {
+                const activity = document.createElement("div");
+                activity.className = "activity";
+
+                const icon = document.createElement("div");
+                icon.className = "activity-icon";
+                icon.textContent = "🎯";
+
+                const details = document.createElement("div");
+
+                const title = document.createElement("p");
+                title.textContent = "Completed " + quiz.topic + " Quiz";
+
+                const date = document.createElement("small");
+                date.textContent =
+                    "Quiz Practice · " + quiz.date;
+
+                details.appendChild(title);
+                details.appendChild(date);
+
+                activity.appendChild(icon);
+                activity.appendChild(details);
+
+                activityContainer.appendChild(activity);
+            });
+        }
+
     </script>
 
 </body>

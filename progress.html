@@ -252,19 +252,19 @@
 
             <div class="card">
                 <div class="stat-icon">📚</div>
-                <h2>12</h2>
+                <h2 id="topicsCompleted">0</h2>
                 <p>Topics Completed</p>
             </div>
 
             <div class="card">
                 <div class="stat-icon">📝</div>
-                <h2>8</h2>
+                <h2 id="quizzesAttempted">0</h2>
                 <p>Quizzes Attempted</p>
             </div>
 
             <div class="card">
                 <div class="stat-icon">⭐</div>
-                <h2>85%</h2>
+                <h2 id="progressAverage">0%</h2>
                 <p>Average Quiz Score</p>
             </div>
 
@@ -277,37 +277,8 @@
         </section>
 
         <section class="card progress-section">
-            <h2 class="section-title">Overall Learning Progress</h2>
-
-            <div class="progress-item">
-                <div class="progress-info">
-                    <span>Computer Science</span>
-                    <strong>80%</strong>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:80%"></div>
-                </div>
-            </div>
-
-            <div class="progress-item">
-                <div class="progress-info">
-                    <span>Mathematics</span>
-                    <strong>65%</strong>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:65%"></div>
-                </div>
-            </div>
-
-            <div class="progress-item">
-                <div class="progress-info">
-                    <span>Science</span>
-                    <strong>90%</strong>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width:90%"></div>
-                </div>
-            </div>
+            <h2 class="section-title">Topics I've Explored 📈</h2>
+            <div id="topicProgressList"></div>
         </section>
 
         <section class="bottom-grid">
@@ -405,7 +376,7 @@
         </section>
 
         <p class="note">
-            Demo progress data – not connected to actual learning activity yet.
+            Your learning progress is updated based on your activities. 💜
         </p>
 
     </main>
@@ -413,6 +384,67 @@
     <footer>
         © 2026 MindMate | Learn Smarter, Grow Better 💜
     </footer>
+
+    <script>
+        // Get saved learning data
+        const learnedTopics = JSON.parse(
+            localStorage.getItem("learnedTopics") || "[]"
+        );
+
+        const quizHistory = JSON.parse(
+            localStorage.getItem("quizHistory") || "[]"
+        );
+
+        // Update topics completed
+        document.getElementById("topicsCompleted").textContent =
+            learnedTopics.length;
+
+        // Update quizzes attempted
+        document.getElementById("quizzesAttempted").textContent =
+            quizHistory.length;
+
+        // Calculate average quiz score
+        const totalScore = quizHistory.reduce(
+            (sum, quiz) => sum + quiz.score, 0
+        );
+
+        const totalQuestions = quizHistory.reduce(
+            (sum, quiz) => sum + quiz.total, 0
+        );
+
+        const average = totalQuestions > 0
+            ? Math.round((totalScore / totalQuestions) * 100)
+            : 0;
+
+        document.getElementById("progressAverage").textContent =
+            average + "%";
+
+        const topicList = document.getElementById("topicProgressList");
+
+        if (learnedTopics.length === 0) {
+            topicList.textContent = "No topics explored yet. Start learning!";
+        } else {
+            learnedTopics.forEach(topic => {
+                const item = document.createElement("div");
+                item.className = "progress-item";
+
+                const info = document.createElement("div");
+                info.className = "progress-info";
+
+                const name = document.createElement("span");
+                name.textContent = topic;
+
+                const status = document.createElement("strong");
+                status.textContent = "Explored";
+
+                info.appendChild(name);
+                info.appendChild(status);
+                item.appendChild(info);
+
+                topicList.appendChild(item);
+            });
+        }
+    </script>
 
 </body>
 

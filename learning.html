@@ -315,6 +315,21 @@
                 document.getElementById("example").textContent = data.example;
 
                 result.style.display = "block";
+                // Save learned topic
+                const learnedTopics = JSON.parse(
+                    localStorage.getItem("learnedTopics") || "[]"
+                );
+
+                if (!learnedTopics.some(
+                    item => item.toLowerCase() === topic.toLowerCase()
+                )) {
+                    learnedTopics.push(topic);
+
+                    localStorage.setItem(
+                        "learnedTopics",
+                        JSON.stringify(learnedTopics)
+                    );
+                }
                 result.scrollIntoView({ behavior: "smooth" });
 
             } catch (error) {

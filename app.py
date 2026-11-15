@@ -28,6 +28,18 @@ def learning():
 
 
 @app.route("/quiz.html")
+@app.route("/dashboard.html")
+def dashboard():
+    return send_from_directory(".", "dashboard.html")
+
+
+@app.route("/progress.html")
+def progress():
+    return send_from_directory(".", "progress.html")
+
+@app.route("/feedback.html")
+def feedback():
+    return send_from_directory(".", "feedback.html")
 def quiz():
     return send_from_directory(".", "quiz.html")
 

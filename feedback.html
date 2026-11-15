@@ -326,6 +326,22 @@
                 return;
             }
 
+            const feedbackData = {
+                rating: selectedRating,
+                message: document.getElementById("comments").value,
+                date: new Date().toLocaleString()
+            };
+
+            const feedbackList = JSON.parse(
+                localStorage.getItem("feedbackList") || "[]"
+            );
+
+            feedbackList.push(feedbackData);
+
+            localStorage.setItem(
+                "feedbackList",
+                JSON.stringify(feedbackList)
+            );
             document.getElementById("successMessage").style.display = "block";
 
             this.reset();

@@ -349,6 +349,16 @@
 
     </script>
 
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const topic = params.get("topic");
+
+        if (topic) {
+            document.getElementById("topic").value = topic;
+            explainConcept();
+        }
+    </script>
+
 </body>
 
 </html>

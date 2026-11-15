@@ -16,6 +16,7 @@ API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=API_KEY) if API_KEY else None
 
 @app.route("/")
+@app.route("/index.html")
 def home():
     return send_from_directory(".", "index.html")
 
@@ -31,6 +32,7 @@ def serve_js(filename):
 
 
 @app.route("/learning")
+@app.route("/learning.html")
 def learning():
     return send_from_directory(".", "learning.html")
 

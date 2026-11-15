@@ -1,4 +1,3 @@
-
 import os
 import json
 
@@ -16,10 +15,19 @@ API_KEY = os.getenv("GEMINI_API_KEY")
 # Create Gemini client only when the API key is available
 client = genai.Client(api_key=API_KEY) if API_KEY else None
 
-
 @app.route("/")
 def home():
     return send_from_directory(".", "index.html")
+
+
+@app.route("/css/<path:filename>")
+def serve_css(filename):
+    return send_from_directory("css", filename)
+
+
+@app.route("/js/<path:filename>")
+def serve_js(filename):
+    return send_from_directory("js", filename)
 
 
 @app.route("/learning")
@@ -28,6 +36,10 @@ def learning():
 
 
 @app.route("/quiz.html")
+def quiz():
+    return send_from_directory(".", "quiz.html")
+
+
 @app.route("/dashboard.html")
 def dashboard():
     return send_from_directory(".", "dashboard.html")
@@ -37,11 +49,10 @@ def dashboard():
 def progress():
     return send_from_directory(".", "progress.html")
 
+
 @app.route("/feedback.html")
 def feedback():
     return send_from_directory(".", "feedback.html")
-def quiz():
-    return send_from_directory(".", "quiz.html")
 
 
 @app.route("/api/explain", methods=["POST"])
